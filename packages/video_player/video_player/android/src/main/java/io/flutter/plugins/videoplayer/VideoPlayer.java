@@ -317,9 +317,11 @@ final class VideoPlayer {
           
           //}
                int trackSupport = mappedTrackInfo.getTrackSupport(i, j, k);
-               if ((trackSupport & RendererCapabilities.FORMAT_HANDLED) != 0) {
-                    audios.add(provider.getTrackName(group.getFormat(k)));
-                }
+              if (trackSupport == C.TRACK_SUPPORT_TYPE_UNSUPPORTED) {
+                  continue;
+              } else if (trackSupport == C.TRACK_SUPPORT_TYPE_SUPPORTED) {
+                  audios.add(provider.getTrackName(group.getFormat(k)));
+              }
         }
       }
 
