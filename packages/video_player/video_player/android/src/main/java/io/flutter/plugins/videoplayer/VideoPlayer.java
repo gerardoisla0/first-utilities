@@ -317,7 +317,7 @@ final class VideoPlayer {
           
           //}
                int trackSupport = mappedTrackInfo.getTrackSupport(i, j, k);
-               if ((trackSupport & RendererCapabilities.FORMAT_SUPPORT_MASK) == RendererCapabilities.FORMAT_SUPPORT_SUPPORTED) {
+               if ((trackSupport & RendererCapabilities.FORMAT_HANDLED) != 0) {
                     audios.add(provider.getTrackName(group.getFormat(k)));
                 }
         }
