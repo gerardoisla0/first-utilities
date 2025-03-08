@@ -309,14 +309,17 @@ final class VideoPlayer {
         TrackGroup group = trackGroupArray.get(j);
         TrackNameProvider provider = new DefaultTrackNameProvider(context.getResources());
         for (int k = 0; k < group.length; k++) {
-          if ((mappedTrackInfo.getTrackSupport(i, j, k) &0b111)
-                  == RendererCapabilities.FORMAT_HANDLED) {
+          //if ((mappedTrackInfo.getTrackSupport(i, j, k) &0b111)
+          //        == RendererCapabilities.FORMAT_HANDLED) {
             //trackSelector.setParameters(builder);
-            audios.add(provider.getTrackName(group.getFormat(k)));
+          //  audios.add(provider.getTrackName(group.getFormat(k)));
 
-
-          }
-
+          
+          //}
+                int trackSupport = mappedTrackInfo.getTrackSupport(i, j, k);
+                if ((trackSupport & RendererCapabilities.FORMAT_SUPPORT_MASK) == RendererCapabilities.FORMAT_SUPPORTED) {
+                    audios.add(provider.getTrackName(group.getFormat(k)));
+                }
         }
       }
 
